@@ -2,21 +2,21 @@ pipeline{
         agent any 
         stages('Build'){
             steps{
-                sh 'docker build -f dockerfile . -t elabbassalah56/jenkins_node:v1.0'
-                sh 'docker volume create node-volume '
+                sh 'docker build -f dockerfile . -t  ELabbassalah56/simple-web-app:v1.0'
+                
             }
         }
         stages('Push'){
             steps{
                 withCredentials([usernamepassword(credentialsId:"docker",usernameVariable:"USERNAME",passwordVariable:"PASSWORD")]){
                     sh 'docker login --username $USERNAME --password $PASSWORD'
-                    sh 'docker push elabbassalah56/jenkins_node:v1.0'
+                    sh 'docker push  ELabbassalah56/simple-web-app:v1.0'
                 }
             }
         }
         stages('Deploy'){
             steps{
-                sh 'docker run -d --name jenkins_node -p 8081:8081 -v  node-volume:/volume elabbassalah56/jenkins_node:v1.0  '
+                sh 'docker run -d --name jenkins_node -p 8081:8081  ELabbassalah56/simple-web-app'
             }
         }
 }
