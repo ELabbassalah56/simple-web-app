@@ -16,7 +16,7 @@ pipeline{
         }
         stages('Deploy'){
             steps{
-                sh 'docker run -d --name jenkins_node -p 8081:8081  ELabbassalah56/simple-web-app'
+                sh 'docker run -d --name jenkins_node -p 8081:8081  ELabbassalah56/simple-web-app:v1.0'
             }
         }
 }
