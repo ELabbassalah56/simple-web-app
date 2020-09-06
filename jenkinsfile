@@ -9,7 +9,7 @@ pipeline{
         }
         stage('Push'){
             steps{
-                withCredentials([usernamePassword(credentialsId:"12345",usernameVariable:"USERNAME",passwordVariable:"PASSWORD")])
+                withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:"USERNAME",passwordVariable:"PASSWORD")])
                 {
                     sh 'docker login --username $USERNAME --password $PASSWORD'
                     sh 'docker push  elabbassalah56/simple-web-app:v1.0'
